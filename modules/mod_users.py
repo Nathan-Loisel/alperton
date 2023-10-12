@@ -6,7 +6,7 @@ from utils import COLOR, STATUS, OUTPUT
 class mod_users:
     def __init__(self):
         self.name = "Users"
-        self.output_type = OUTPUT.multiple_binary
+        self.output_type = OUTPUT.multiple_info
         self.alert_title = ["", "", ""]
         self.output = ["", "", ""]
 
