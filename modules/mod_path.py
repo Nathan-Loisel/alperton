@@ -1,4 +1,7 @@
 #from alperton import COLORS, STATUS
+import os
+import subprocess
+from alperton import COLORS, STATUS
 
 class mod_path:
     def __init__(self):
