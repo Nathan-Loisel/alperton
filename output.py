@@ -7,3 +7,6 @@ class output:
 
     def addEntry(self, tab):
         self.content.append(tab)
+
+    def __len__(self):
+        return len(self.content)
