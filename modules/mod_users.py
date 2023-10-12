@@ -32,4 +32,4 @@ class mod_users:
             self.alert_title[1] = "Groups"
             self.output[1] = out
 
-        return self.output_type, self.alert, self.alert_title, self.output
+        return self.output_type, self.alert_title, self.output
