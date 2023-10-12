@@ -1,3 +1,8 @@
+import os
+import subprocess
+from utils import COLOR, STATUS, OUTPUT
+
+
 class mod_history:
     def __init__(self):
         self.name = "History"
