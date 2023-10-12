@@ -1,21 +1,22 @@
-#from alperton import COLORS, STATUS
 import os
 import subprocess
-import alperton
+from utils import COLOR, STATUS, OUTPUT
 
 class mod_path:
     def __init__(self):
-        self.name = "path"
-        self.description = "Check if $PATH has a '.' entry"
-        self.status = False
+        self.name = "Path"
+        self.output_type = OUTPUT.binary
+        self.alert = False
+        self.alert_title = ""
         self.output = ""
 
     def run(self):
         path = os.environ["PATH"]
-        path = path_command.split(":")
-        for i in path:
+        path_split = path.split(":")
+        for i in path_split:
             if i == ".":
-                self.status = True
-                self.output = "Path has a '.' entry"
+                self.alert = True
+                self.alert_title = "Path has a '.' entry"
+                self.output = path
                 break
-        return self.status, self.output
+        return self.output_type, self.status, self.output
