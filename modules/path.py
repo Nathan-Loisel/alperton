@@ -1,4 +1,4 @@
-from main import COLORS, STATUS
+from alperton import COLORS, STATUS
 
 def run():
     print( STATUS.info + " Checking $PATH")
