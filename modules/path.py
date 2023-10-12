@@ -1,3 +1,5 @@
+from main import COLORS, STATUS
+
 def run():
     print( STATUS.info + " Checking $PATH")
     path = os.environ["PATH"]
