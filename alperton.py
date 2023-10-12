@@ -3,10 +3,14 @@ import subprocess
 from utils import COLOR, STATUS, OUTPUT
 
 from modules.mod_path import mod_path
+from modules.mod_suid import mod_suid
+from modules.mod_sudo import mod_sudo
+from modules.mod_bak import mod_bak
+from modules.mod_hidden import mod_hidden
+from modules.mod_homes import mod_homes
 
-modules = [mod_path()]
+modules = [mod_path(), mod_suid(), mod_sudo(), mod_bak(), mod_hidden(), mod_homes()]
 
-# auto run
 def __main__():
     print(COLOR.red + " ▄▄▄       ██▓     ██▓███  ▓█████  ██▀███  ▄▄▄█████▓ ▒█████   ███▄    █ ")
     print("▒████▄    ▓██▒    ▓██░  ██▒▓█   ▀ ▓██ ▒ ██▒▓  ██▒ ▓▒▒██▒  ██▒ ██ ▀█   █ ")
