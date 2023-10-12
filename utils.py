@@ -13,3 +13,5 @@ class STATUS:
 class OUTPUT:
     binary = 1
     multiple_binary = 2
+    info = 3
+    multiple_info = 4

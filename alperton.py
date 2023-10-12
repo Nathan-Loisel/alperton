@@ -38,6 +38,18 @@ def __main__():
                     print(output[i])
                     print("")
 
+        elif output_type == OUTPUT.info:
+            if alert:
+                print(STATUS.info + " " + alert_title)
+                print(output)
+
+        elif output_type == OUTPUT.multiple_info:
+            for i in range(len(alert)):
+                if alert[i]:
+                    print(STATUS.info + " " + alert_title[i])
+                    print(output[i])
+                    print("")
+
         print("")
 
 if(__name__ == "__main__"):
