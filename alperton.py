@@ -33,8 +33,8 @@ def __main__():
     print("")
 
 # Module: check if path has a "." entry
-from modules.mod_path import mod_path
-path_check = mod_path()
+import modules.mod_path
+path_check = modules.mod_path.mod_path()
 path_check.run()
 
 # Module: check for sudo rights
