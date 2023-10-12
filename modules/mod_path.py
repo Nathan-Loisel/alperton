@@ -19,4 +19,4 @@ class mod_path:
                 self.alert_title = "Path has a '.' entry"
                 self.output = path
                 break
-        return self.output_type, self.status, self.output
+        return self.output_type, self.alert, self.alert_title, self.output

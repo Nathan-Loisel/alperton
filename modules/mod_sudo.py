@@ -17,4 +17,4 @@ class mod_sudo:
             self.alert = True
             self.alert_title = "User has sudo rights"
             self.output = out.decode("utf-8")
-        return self.output_type, self.alert, self.output
+        return self.output_type, self.alert, self.alert_title, self.output

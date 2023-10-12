@@ -33,3 +33,5 @@ class mod_suid:
             self.alert_title = "Uncommon suid binaries"
             for i in suid:
                 self.output += "\n" + i
+
+        return self.output_type, self.alert, self.alert_title, self.output
