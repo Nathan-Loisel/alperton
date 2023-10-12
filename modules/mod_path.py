@@ -1,6 +1,6 @@
 import os
 import subprocess
-from utils import COLOR, STATUS, OUTPUT
+from utils import COLOR, STATUS, OUTPUT_TYPE
 from output import output
 
 class mod_path:
