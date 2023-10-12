@@ -5,7 +5,7 @@ from utils import COLOR, STATUS, OUTPUT
 class mod_bak:
     def __init__(self):
         self.name = "Backup files"
-        self.output_type = OUTPUT.binary
+        self.output_type = OUTPUT.multiple_binary
         self.alert = [False, False]
         self.alert_title = ["", ""]
         self.output = ["", ""]
