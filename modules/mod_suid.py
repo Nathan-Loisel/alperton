@@ -1,14 +1,12 @@
 import os
 import subprocess
-from utils import COLOR, STATUS, OUTPUT
+from utils import COLOR, STATUS, OUTPUT_TYPE
+from output import output
 
 class mod_suid:
     def __init__(self):
         self.name = "SUID"
-        self.output_type = OUTPUT.binary
-        self.alert = False
-        self.alert_title = ""
-        self.output = ""
+        self.output = output(OUTPUT_TYPE.alert)
 
     def run(self):
         COMMON_SUID_BINARIES = ["/bin/mount", \
@@ -29,9 +27,9 @@ class mod_suid:
             if i in COMMON_SUID_BINARIES:
                 suid.remove(i)
         if len(suid) > 0:
-            self.alert = True
-            self.alert_title = "Uncommon suid binaries"
+            out = ""
             for i in suid:
-                self.output += "\n" + i
+                out += i + "\n"
+            self.output.addEntry(["SUID binaries found", out])
 
-        return self.output_type, self.alert, self.alert_title, self.output
+        return self.output

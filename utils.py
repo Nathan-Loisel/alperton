@@ -10,8 +10,6 @@ class STATUS:
     good = COLOR.green + "[+]" + COLOR.reset
     bad = COLOR.red + "[!]" + COLOR.reset
 
-class OUTPUT:
-    binary = 1
-    multiple_binary = 2
-    info = 3
-    multiple_info = 4
+class OUTPUT_TYPE:
+    alert = 1
+    info = 2

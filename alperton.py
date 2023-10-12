@@ -1,6 +1,7 @@
 import os 
 import subprocess
-from utils import COLOR, STATUS, OUTPUT
+from utils import COLOR, STATUS, OUTPUT_TYPE
+from output import output
 
 from modules.mod_path import mod_path
 from modules.mod_suid import mod_suid
@@ -27,30 +28,15 @@ def __main__():
 
     for module in modules:
         print(STATUS.info + " Running module: " + module.name)
-        output_type, alert, alert_title, output = module.run()
-        if output_type == OUTPUT.binary:
-            if alert:
-                print(STATUS.bad + " " + alert_title)
-                print(output)
+        output = module.run()
 
-        elif output_type == OUTPUT.multiple_binary:
-            for i in range(len(alert)):
-                if alert[i]:
-                    print(STATUS.bad + " " + alert_title[i])
-                    print(output[i])
-                    print("")
-
-        elif output_type == OUTPUT.info:
-            if alert:
-                print(STATUS.info + " " + alert_title)
-                print(output)
-
-        elif output_type == OUTPUT.multiple_info:
-            for i in range(len(alert)):
-                if alert[i]:
-                    print(STATUS.info + " " + alert_title[i])
-                    print(output[i])
-                    print("")
+        for i in range(len(output.content)):
+            if(output.type == OUTPUT_TYPE.info):
+                print(STATUS.info + " " + output.content[i][0])
+            elif(output.type == OUTPUT_TYPE.alert):
+                print(STATUS.binary + " " + output.content[i][0])
+            print(output.content[i][1])
+            print("")
 
         print("")
 

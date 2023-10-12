@@ -1,15 +1,12 @@
 import os
 import subprocess
-from utils import COLOR, STATUS, OUTPUT
-
+from utils import COLOR, STATUS, OUTPUT_TYPE
+from output import output
 
 class mod_history:
     def __init__(self):
         self.name = "History"
-        self.output_type = OUTPUT.multiple_binary
-        self.alert = [False, False]
-        self.alert_title = ["", ""]
-        self.output = ["", ""]
+        self.output = output(OUTPUT_TYPE.info)
 
     def run(self):
         # .bash_history
@@ -18,10 +15,10 @@ class mod_history:
         bash_history = out.decode("utf-8").split("\n")
         bash_history = list(filter(None, bash_history))
         if len(bash_history) > 0:
-            self.alert[0] = True
-            self.alert_title[0] = ".bash_history found"
+            out = ""
             for i in bash_history:
-                self.output[0] += "\n" + i
+                out += "\n" + i
+            self.output.addEntry([".bash_history found", out])
 
         # .zsh_history
         zsh_history = subprocess.Popen(["find", "/", "-name", ".zsh_history", "-type", "f"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -29,9 +26,9 @@ class mod_history:
         zsh_history = out.decode("utf-8").split("\n")
         zsh_history = list(filter(None, zsh_history))
         if len(zsh_history) > 0:
-            self.alert[1] = True
-            self.alert_title[1] = ".zsh_history found"
+            out = ""
             for i in zsh_history:
-                self.output[1] += "\n" + i
+                out += "\n" + i
+            self.output.addEntry([".zsh_history found", out])
 
-        return self.output_type, self.alert, self.alert_title, self.output
+        return self.output

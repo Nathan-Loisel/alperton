@@ -1,14 +1,12 @@
 import os
 import subprocess
-from utils import COLOR, STATUS, OUTPUT
+from utils import COLOR, STATUS, OUTPUT_TYPE
+from output import output
 
 class mod_bak:
     def __init__(self):
         self.name = "Backup files"
-        self.output_type = OUTPUT.multiple_binary
-        self.alert = [False, False]
-        self.alert_title = ["", ""]
-        self.output = ["", ""]
+        self.output = output(OUTPUT_TYPE.alert)
 
     def run(self):
         COMMON_BAK_OLD_FILES = []
@@ -22,10 +20,10 @@ class mod_bak:
             if i in COMMON_BAK_OLD_FILES:
                 bak.remove(i)
         if len(bak) > 0:
-            self.alert[0] = True
-            self.alert_title[0] = ".bak files found"
+            out = ""
             for i in bak:
-                self.output[0] += "\n" + i
+                out += "\n" + i
+            self.output.addEntry([".bak files found", out])
 
         # .old
         old = subprocess.Popen(["find", "/", "-name", "*.old", "-type", "f"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -36,9 +34,9 @@ class mod_bak:
             if i in COMMON_BAK_OLD_FILES:
                 old.remove(i)
         if len(old) > 0:
-            self.alert[1] = True
-            self.alert_title[1] = ".old files found"
+            out = ""
             for i in old:
-                self.output[1] += "\n" + i
+                out += "\n" + i
+            self.output.addEntry([".old files found", out])
 
-        return self.output_type, self.alert, self.alert_title, self.output
+        return self.output

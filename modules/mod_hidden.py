@@ -1,14 +1,12 @@
 import os
 import subprocess
-from utils import COLOR, STATUS, OUTPUT
+from utils import COLOR, STATUS, OUTPUT_TYPE
+from output import output
 
 class mod_hidden:
     def __init__(self):
         self.name = "Hidden files"
-        self.output_type = OUTPUT.binary
-        self.alert = False
-        self.alert_title = ""
-        self.output = ""
+        self.output = output(OUTPUT_TYPE.alert)
 
     def run(self):
         hidden = subprocess.Popen(["find", "/", "-name", ".*", "-type", "f"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -16,12 +14,13 @@ class mod_hidden:
         hidden = out.decode("utf-8").split("\n")
         hidden = list(filter(None, hidden))
         if len(hidden) > 0:
-            self.alert = True
-            self.alert_title = "Hidden files found"
+            out = ""
             for i in hidden:
-                self.output += "\n" + i
+                out += "\n" + i
+            self.output.addEntry(["Hidden files found", out])
         
-        if len(self.output.split("\n")) > 20:
-            self.output = "\n".join(self.output.split("\n")[:20]) + "\n..."
+        if(len(self.output[len(self.output) - 1][1].split("\n")) > 20):
+            self.output[len(self.output) - 1][0] = "Hidden files found (truncated)"
+            self.output[len(self.output) - 1][1] = "\n".join(self.output[len(self.output) - 1][1].split("\n")[0:20]) + "\n[...]"
 
-        return self.output_type, self.alert, self.alert_title, self.output
+        return self.output
