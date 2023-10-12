@@ -8,7 +8,7 @@ class COLOR:
 class STATUS:
     info = COLOR.blue + "[-]" + COLOR.reset
     good = COLOR.green + "[+]" + COLOR.reset
-    bad = COLOR.red + "[!]" + COLOR.reset
+    alert = COLOR.red + "[!]" + COLOR.reset
 
 class OUTPUT_TYPE:
     alert = 1
