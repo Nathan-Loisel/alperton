@@ -8,8 +8,10 @@ from modules.mod_sudo import mod_sudo
 from modules.mod_bak import mod_bak
 from modules.mod_hidden import mod_hidden
 from modules.mod_homes import mod_homes
+from modules.mod_users import mod_users
+from modules.mod_history import mod_history
 
-modules = [mod_path(), mod_suid(), mod_sudo(), mod_bak(), mod_hidden(), mod_homes()]
+modules = [mod_path(), mod_suid(), mod_sudo(), mod_bak(), mod_hidden(), mod_homes(), mod_users(), mod_history()]
 
 def __main__():
     print(COLOR.red + " ▄▄▄       ██▓     ██▓███  ▓█████  ██▀███  ▄▄▄█████▓ ▒█████   ███▄    █ ")
