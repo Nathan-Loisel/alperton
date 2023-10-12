@@ -33,7 +33,7 @@ def __main__():
     print("")
 
 # Module: check if path has a "." entry
-import modules.mod_path
+from modules.mod_path import mod_path
 path_check = mod_path()
 path_check.run()
 
